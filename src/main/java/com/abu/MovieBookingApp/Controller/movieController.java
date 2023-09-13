@@ -23,11 +23,67 @@ public class movieController{
     public movieController(iMovieService movieService) {
         this.movieService = movieService;
     }
-
+/**
+ *Working as expected
+ * */
     @PostMapping("/addMovie")
    public movie  addMovie(@RequestBody  movie movie){
       return movieService.addMovie(movie);
     }
 
+   /**
+    * Not Working Need to check
+    * why it is not working
+    *
+    * */
+    @PutMapping("/updateMovie/{movieId}")
+    public movie updateMovie(@RequestBody  movie movie){
+        return movieService.updateMovie(movie);
+    }
+
+     /*
+     * Working As expected
+     *
+     * */
+    @DeleteMapping("/delete/{movieId}")
+    public void deleteMovie(@PathVariable int movieId){
+        movieService.deleteMovie(movieId);
+    }
+
+    /**
+     * Working as expected
+     *
+     * */
+    @GetMapping("/getMovie/{movieId}")
+    public movie getMovie(@PathVariable  int movieId){
+        return movieService.getMovie(movieId);
+    }
+
+    /**
+     * Working as expected
+     *
+     * */
+    @GetMapping("/Movies")
+    List<movie> getAll()   {
+        return movieService.getAll();
+    }
+
+    /**
+     * Working as expected
+     *
+     * */
+    @GetMapping("/movie/{name}")
+    movie getByMovieName(@PathVariable  String name)  {
+        return movieService.getByMovieName(name);
+    }
+     /**
+     * Working as expected
+     *
+     * */
+//    @GetMapping("/movieLike/{name}")
+//    List<movie> getByMovieNameLike(@PathVariable  String name){
+//        return movieService.getByMovieNameLike(name);
+//    }
 
 }
+

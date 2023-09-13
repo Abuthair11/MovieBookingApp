@@ -6,10 +6,13 @@ package com.abu.MovieBookingApp.Service;/*
 
  */
 
+import com.abu.MovieBookingApp.Exception.MovieNotFoundException;
 import com.abu.MovieBookingApp.Model.movie;
 import com.abu.MovieBookingApp.Repository.movieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class movieServiceImpl implements  iMovieService{
@@ -23,4 +26,55 @@ public class movieServiceImpl implements  iMovieService{
     public movie addMovie(movie movies) {
         return  repository.save(movies);
     }
+
+    @Override
+    public movie updateMovie(movie movie) {
+//        movie movieid = repository.findById(movieId).get();
+//        if(movieid == null){
+//            throw new MovieNotFoundException("Movie ID not found");
+//        }
+        return repository.save(movie);
+    }
+
+    @Override
+    public void deleteMovie(int  movieId) {
+         repository.deleteById(movieId);
+    }
+
+    @Override
+    public movie getMovie(int movieId) {
+        movie findMovie = repository.findById(movieId).get();
+        if(findMovie == null){
+            throw new MovieNotFoundException("Movie ID not found");
+        }
+        return findMovie;
+    }
+
+    @Override
+    public List<movie> getAll() {
+        List<movie> getAllMovie =  repository.findAll();
+        if(getAllMovie.isEmpty()){
+            throw new MovieNotFoundException("No movies found");
+        }
+        return getAllMovie;
+
+    }
+
+    @Override
+    public movie getByMovieName(String name) {
+        movie movieName = repository.findByMovieName(name);
+        if(movieName == null){
+            throw new MovieNotFoundException("Movie Name not found");
+        }
+        return movieName;
+    }
+
+//    @Override
+//    public List<movie> getByMovieNameLike(String name) {
+//        List<movie> list = repository.findByMovieNameLike(name);
+//        if(list.isEmpty()){
+//            throw new MovieNotFoundException("Movie name Starts with "+name +" is not present");
+//        }
+//        return list;
+
 }

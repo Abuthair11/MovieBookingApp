@@ -8,6 +8,22 @@ package com.abu.MovieBookingApp.Service;/*
 
 import com.abu.MovieBookingApp.Model.movie;
 
+import java.util.List;
+
 public interface iMovieService {
     public movie addMovie(movie movies);
+
+    public movie updateMovie(movie movie);
+
+
+    public void deleteMovie(int movieId);
+
+    public movie getMovie(int movieId);
+
+    List<movie> getAll();
+
+    movie getByMovieName(String name);
+
+//    List<movie> getByMovieNameLike(String name);
+
 }

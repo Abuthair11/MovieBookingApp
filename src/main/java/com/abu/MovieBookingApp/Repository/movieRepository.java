@@ -10,6 +10,8 @@ package com.abu.MovieBookingApp.Repository;
 import com.abu.MovieBookingApp.Model.movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 
 public interface movieRepository extends JpaRepository<movie,Integer> {
 
@@ -17,4 +19,6 @@ public interface movieRepository extends JpaRepository<movie,Integer> {
 
     public movie findByMovieName(String movieName);
 
+
+//    List<movie> findByMovieNameLike(String movieName);
 }
