@@ -9,10 +9,12 @@ package com.abu.MovieBookingApp.Service;/*
 import com.abu.MovieBookingApp.Exception.MovieNotFoundException;
 import com.abu.MovieBookingApp.Model.movie;
 import com.abu.MovieBookingApp.Repository.movieRepository;
+import com.abu.MovieBookingApp.payload.MovieResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -56,21 +58,34 @@ public class movieServiceImpl implements  iMovieService{
     }
 
     @Override
-    public List<movie> getAll(int pageNo,int pageSize) {
+    public MovieResponse  getAll(int pageNo,int pageSize,String sortBy,String sortDir) {
+
+        Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortBy).ascending(): Sort.by(sortBy).descending();
         //Create pageable instances
-        Pageable pageable = PageRequest.of(pageNo, pageSize);
+        Pageable pageable = PageRequest.of(pageNo, pageSize,sort);
 
         Page<movie> getAllMovie =  repository.findAll(pageable);
 
         //get content from page object
 
         List<movie> movies = getAllMovie.getContent();
-        if(movies.isEmpty()){
-            throw new MovieNotFoundException("No movies found");
-        }
-        return movies;
+//
+        List<movie> content = movies;
 
+        MovieResponse movieResponse = new MovieResponse();
+        movieResponse.setContent(content);
+        movieResponse.setPageNo(getAllMovie.getNumber());
+        movieResponse.setPageSize(getAllMovie.getSize());
+        movieResponse.setTotalElement((int) getAllMovie.getTotalElements() );
+        movieResponse.setTotalPages(getAllMovie.getTotalPages());
+        movieResponse.setLast(getAllMovie.isLast());
+        if(movieResponse.getContent().isEmpty()){
+            throw new MovieNotFoundException("No Movie Found");
+        }
+        return movieResponse;
     }
+
+
 
     @Override
     public movie getByMovieName(String name) {

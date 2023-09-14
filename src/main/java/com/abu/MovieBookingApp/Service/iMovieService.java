@@ -7,6 +7,7 @@ package com.abu.MovieBookingApp.Service;/*
  */
 
 import com.abu.MovieBookingApp.Model.movie;
+import com.abu.MovieBookingApp.payload.MovieResponse;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ public interface iMovieService {
 
     public movie getMovie(int movieId);
 
-    List<movie> getAll(int pageNo,int pageSize);
+    MovieResponse getAll(int pageNo, int pageSize,String  sortBy,String sortDir);
 
     movie getByMovieName(String name);
 

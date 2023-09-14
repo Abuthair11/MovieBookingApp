@@ -9,6 +9,8 @@ package com.abu.MovieBookingApp.Controller;/*
 
 import com.abu.MovieBookingApp.Model.movie;
 import com.abu.MovieBookingApp.Service.iMovieService;
+import com.abu.MovieBookingApp.Utils.AppConstants;
+import com.abu.MovieBookingApp.payload.MovieResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -62,15 +64,17 @@ public class movieController{
 
     /**
      * Working as expected
-     * added pagenation
+     * added pagenation and sorting methods
      *
      * */
     @GetMapping("/Movies")
-    List<movie> getAll(
-            @RequestParam(value  ="pageNo",defaultValue ="0",required=false) int pageNo,
-            @RequestParam(value ="pageSize",defaultValue ="10",required=false) int pageSize
+    MovieResponse getAll(
+            @RequestParam(value  ="pageNo",defaultValue = AppConstants.DEFAULT_PAGE_NUMBER,required=false) int pageNo,
+            @RequestParam(value ="pageSize",defaultValue =AppConstants.DEFAULT_PAGE_SIZE,required=false) int pageSize,
+            @RequestParam(value ="sortBy",defaultValue =AppConstants.DEFAULT_SORT_BY,required=false) String sortBy,
+            @RequestParam(value ="sortDir",defaultValue =AppConstants.DEFAULT_SORT_ORDER,required=false) String sortDir
     )   {
-        return movieService.getAll(pageNo, pageSize);
+        return movieService.getAll(pageNo, pageSize,sortBy,sortDir);
     }
 
     /**
