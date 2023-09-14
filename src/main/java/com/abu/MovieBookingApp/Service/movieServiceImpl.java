@@ -10,6 +10,9 @@ import com.abu.MovieBookingApp.Exception.MovieNotFoundException;
 import com.abu.MovieBookingApp.Model.movie;
 import com.abu.MovieBookingApp.Repository.movieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -53,12 +56,19 @@ public class movieServiceImpl implements  iMovieService{
     }
 
     @Override
-    public List<movie> getAll() {
-        List<movie> getAllMovie =  repository.findAll();
-        if(getAllMovie.isEmpty()){
+    public List<movie> getAll(int pageNo,int pageSize) {
+        //Create pageable instances
+        Pageable pageable = PageRequest.of(pageNo, pageSize);
+
+        Page<movie> getAllMovie =  repository.findAll(pageable);
+
+        //get content from page object
+
+        List<movie> movies = getAllMovie.getContent();
+        if(movies.isEmpty()){
             throw new MovieNotFoundException("No movies found");
         }
-        return getAllMovie;
+        return movies;
 
     }
 

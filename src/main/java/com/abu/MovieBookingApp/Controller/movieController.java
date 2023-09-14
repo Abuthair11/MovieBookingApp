@@ -10,6 +10,7 @@ package com.abu.MovieBookingApp.Controller;/*
 import com.abu.MovieBookingApp.Model.movie;
 import com.abu.MovieBookingApp.Service.iMovieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -61,11 +62,15 @@ public class movieController{
 
     /**
      * Working as expected
+     * added pagenation
      *
      * */
     @GetMapping("/Movies")
-    List<movie> getAll()   {
-        return movieService.getAll();
+    List<movie> getAll(
+            @RequestParam(value  ="pageNo",defaultValue ="0",required=false) int pageNo,
+            @RequestParam(value ="pageSize",defaultValue ="10",required=false) int pageSize
+    )   {
+        return movieService.getAll(pageNo, pageSize);
     }
 
     /**

@@ -22,7 +22,7 @@ public interface iMovieService {
 
     public movie getMovie(int movieId);
 
-    List<movie> getAll();
+    List<movie> getAll(int pageNo,int pageSize);
 
     movie getByMovieName(String name);
 
