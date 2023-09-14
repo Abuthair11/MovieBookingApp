@@ -13,6 +13,8 @@ import java.util.List;
 public interface iMovieService {
     public movie addMovie(movie movies);
 
+
+
     public movie updateMovie(movie movie);
 
 
@@ -30,4 +32,6 @@ public interface iMovieService {
     public  List<movie> getByMovieDirector(String  director);
 
 //    public  movie getByMovieDescription(String description);
+
+    List<movie> getByMovieNameLike(String name);
 }

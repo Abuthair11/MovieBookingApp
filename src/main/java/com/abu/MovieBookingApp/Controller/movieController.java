@@ -97,10 +97,9 @@ public class movieController{
         return movieService.getByMovieDirector(director);
     }
 
-//    @GetMapping("/movieDes/{description}")
-//    public  movie getByMovieDescription(String description){
-//        return movieService.getByMovieDescription(description);
-//    }
-
+    @GetMapping("/moviesLike/{movieLike}")
+    public  List<movie> getByMovieNameLike(@PathVariable String movieLike){
+        return movieService.getByMovieNameLike(movieLike);
+    }
 }
 

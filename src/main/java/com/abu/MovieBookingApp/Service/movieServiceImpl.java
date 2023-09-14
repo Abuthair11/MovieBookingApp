@@ -27,6 +27,8 @@ public class movieServiceImpl implements  iMovieService{
         return  repository.save(movies);
     }
 
+
+
     @Override
     public movie updateMovie(movie movie) {
 //        movie movieid = repository.findById(movieId).get();
@@ -72,7 +74,7 @@ public class movieServiceImpl implements  iMovieService{
     @Override
     public  List<movie> getByMovieGenre(String genre) {
         List<movie> movieGerman = repository.findByMovieGenre(genre);
-        if(movieGerman == null){
+        if(movieGerman.isEmpty()){
             throw new MovieNotFoundException("Movie Genre not found");
         }
         return movieGerman;
@@ -81,21 +83,21 @@ public class movieServiceImpl implements  iMovieService{
     @Override
     public  List<movie> getByMovieDirector(String director) {
         List<movie> movieDirector = repository.findByMovieDirector(director);
-        if(movieDirector == null){
+        if(movieDirector.isEmpty()){
             throw new MovieNotFoundException("Movie Director not found");
         }
         return movieDirector;
 
     }
 
-//    @Override
-//    public  movie getByMovieDescription(String description) {
-//        movie movieDescription = repository.findByMovieDescription(description);
-//        if(movieDescription == null){
-//            throw new MovieNotFoundException("Movie Description not found");
-//        }
-//        return movieDescription;
-//    }
+    @Override
+    public List<movie> getByMovieNameLike(String name) {
+       List<movie>  likeMovie = repository.findByMovieNameLike(name);
+       if(likeMovie.isEmpty()){
+           throw new MovieNotFoundException("No Movie name Contains "+name);
+       }
+       return likeMovie;
+    }
 
 
 }
