@@ -69,12 +69,33 @@ public class movieServiceImpl implements  iMovieService{
         return movieName;
     }
 
+    @Override
+    public  List<movie> getByMovieGenre(String genre) {
+        List<movie> movieGerman = repository.findByMovieGenre(genre);
+        if(movieGerman == null){
+            throw new MovieNotFoundException("Movie Genre not found");
+        }
+        return movieGerman;
+    }
+
+    @Override
+    public  List<movie> getByMovieDirector(String director) {
+        List<movie> movieDirector = repository.findByMovieDirector(director);
+        if(movieDirector == null){
+            throw new MovieNotFoundException("Movie Director not found");
+        }
+        return movieDirector;
+
+    }
+
 //    @Override
-//    public List<movie> getByMovieNameLike(String name) {
-//        List<movie> list = repository.findByMovieNameLike(name);
-//        if(list.isEmpty()){
-//            throw new MovieNotFoundException("Movie name Starts with "+name +" is not present");
+//    public  movie getByMovieDescription(String description) {
+//        movie movieDescription = repository.findByMovieDescription(description);
+//        if(movieDescription == null){
+//            throw new MovieNotFoundException("Movie Description not found");
 //        }
-//        return list;
+//        return movieDescription;
+//    }
+
 
 }

@@ -24,6 +24,10 @@ public interface iMovieService {
 
     movie getByMovieName(String name);
 
-//    List<movie> getByMovieNameLike(String name);
 
+    public List<movie> getByMovieGenre(String genre);
+
+    public  List<movie> getByMovieDirector(String  director);
+
+//    public  movie getByMovieDescription(String description);
 }

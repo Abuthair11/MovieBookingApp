@@ -1,5 +1,6 @@
 package com.abu.MovieBookingApp;
 
+import com.abu.MovieBookingApp.Model.movie;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

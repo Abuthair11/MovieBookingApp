@@ -76,13 +76,30 @@ public class movieController{
     movie getByMovieName(@PathVariable  String name)  {
         return movieService.getByMovieName(name);
     }
-     /**
+
+    /**
      * Working as expected
      *
      * */
-//    @GetMapping("/movieLike/{name}")
-//    List<movie> getByMovieNameLike(@PathVariable  String name){
-//        return movieService.getByMovieNameLike(name);
+    @GetMapping("/movieGen/{genre}")
+
+    public  List<movie> getByMovieGenre(@PathVariable  String genre){
+        return movieService.getByMovieGenre(genre);
+    }
+
+    /**
+     * Working as expected
+     *
+     * */
+
+    @GetMapping("/movieDir/{director}")
+    public  List<movie> getByMovieDirector(@PathVariable String  director){
+        return movieService.getByMovieDirector(director);
+    }
+
+//    @GetMapping("/movieDes/{description}")
+//    public  movie getByMovieDescription(String description){
+//        return movieService.getByMovieDescription(description);
 //    }
 
 }

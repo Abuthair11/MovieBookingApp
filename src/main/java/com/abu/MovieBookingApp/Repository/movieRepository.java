@@ -19,6 +19,10 @@ public interface movieRepository extends JpaRepository<movie,Integer> {
 
     public movie findByMovieName(String movieName);
 
+   public  List<movie> findByMovieGenre(String genre);
 
-//    List<movie> findByMovieNameLike(String movieName);
+   public List<movie> findByMovieDirector(String  director);
+
+//   public  movie findByMovieDescription(String description);
+
 }
