@@ -33,13 +33,21 @@ public class movie {
             allocationSize = 1
     )
     private int movieId;
+    @Column(nullable = false)
     private String movieName;
+    @Column(nullable = false)
     private String movieDescription;
+    @Column(nullable = false)
     private String movieImageUrl;
+    @Column(nullable = false)
     private String movieDuration;
+    @Column(nullable = false)
     private String movieGenre;
+    @Column(nullable = false)
     private String movieDirector;
+    @Column(nullable = false)
     private String movieActors;
+    @Column(nullable = false)
     private String movieRating;
 
     @CreationTimestamp

@@ -20,7 +20,7 @@ import java.util.Date;
 public class GlobalExceptionHandler {
 
 
-    //Handle Global Exception
+
     //Handle Specific Exception
 
     @ExceptionHandler(Exception.class)
